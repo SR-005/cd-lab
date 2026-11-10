@@ -14,7 +14,6 @@ int main()
 
     for (i=0; expression[i]!='\0'; i++)
     {  
-        printf("\nexpression: %c\n",expression[i]);
         if(isalnum(expression[i]))
         {
             top++;
