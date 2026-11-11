@@ -3,26 +3,32 @@
 
 int main()
 {
-    FILE *input=fopen("input.txt","r");
-    FILE *output=fopen("machinecode.txt","w");
-
-    
-
-    int i;
-    char quadruple[20];
+    int n,i;
+    char tac[20][20];
     char operator, arg1, arg2, result;
 
-    while(fscanf(input, "%s", quadruple)!=EOF)
+    FILE *output=fopen("machinecode.txt","w");
+
+    printf("Enter the number of lines: ");
+    scanf("%d",&n);
+
+    printf("Enter the 3 Address Code Statements: ");
+    for(i=0;i<n;i++)
     {
-        result=quadruple[0];
-        arg1=quadruple[2];
+        scanf("%s", tac[i]);
+    }
+
+    for(i=0;i<n;i++)
+    {
+        result=tac[i][0];
+        arg1=tac[i][2];
 
         fprintf(output, "MOV R%d, %c\n", i, arg1);
 
-        if(quadruple[3]!='\0')
+        if(tac[i][3]!='\0')
         {
-            operator=quadruple[3];
-            arg2=quadruple[4];
+            operator=tac[i][3];
+            arg2=tac[i][4];
 
             if(operator=='+')
                 fprintf(output, "ADD R%d, %c\n", i, arg2);
@@ -34,8 +40,6 @@ int main()
                 fprintf(output, "DIV R%d, %c\n", i, arg2);
         }
         fprintf(output, "MOV %c, R%d\n", result, i);
-        i++;
     }
-    fclose(input);
     fclose(output);
 }
