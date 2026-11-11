@@ -3,40 +3,39 @@
 
 int main()
 {
-    int n,i;
-    char tac[20][20];
+    FILE *input=fopen("input.txt","r");
+    FILE *output=fopen("machinecode.txt","w");
+
+    
+
+    int i;
+    char quadruple[20];
     char operator, arg1, arg2, result;
 
-    printf("Enter the number of lines: ");
-    scanf("%d",&n);
-
-    printf("Enter the 3 Address Code Statements: ");
-    for(i=0;i<n;i++)
+    while(fscanf(input, "%s", quadruple)!=EOF)
     {
-        scanf("%s", tac[i]);
-    }
+        result=quadruple[0];
+        arg1=quadruple[2];
 
-    for(i=0;i<n;i++)
-    {
-        result=tac[i][0];
-        arg1=tac[i][2];
+        fprintf(output, "MOV R%d, %c\n", i, arg1);
 
-        printf("MOV R%d %c\n", i, arg1);
-
-        if(tac[i][3]!='\0')
+        if(quadruple[3]!='\0')
         {
-            operator=tac[i][3];
-            arg2=tac[i][4];
+            operator=quadruple[3];
+            arg2=quadruple[4];
 
             if(operator=='+')
-                printf("ADD R%d, %c\n", i, arg2);
+                fprintf(output, "ADD R%d, %c\n", i, arg2);
             else if(operator=='-')
-                printf("SUB R%d, %c\n", i, arg2);
+                fprintf(output, "SUB R%d, %c\n", i, arg2);
             else if(operator=='*')
-                printf("MUL R%d, %c\n", i, arg2);
+                fprintf(output, "MUL R%d, %c\n", i, arg2);
             else if(operator=='/')
-                printf("DIV R%d, %c\n", i, arg2);
+                fprintf(output, "DIV R%d, %c\n", i, arg2);
         }
-        printf("MOV %c, R%d", result, i);
+        fprintf(output, "MOV %c, R%d\n", result, i);
+        i++;
     }
+    fclose(input);
+    fclose(output);
 }
