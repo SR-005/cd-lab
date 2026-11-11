@@ -1,8 +1,6 @@
 MOV R0, a
 ADD R0, b
-MOV x, R0
-MOV R1, x
-MUL R1, c
-MOV y, R1
-MOV R2, y
-MOV z, R2
+MOV t, R0
+MOV R1, c
+MUL R1, d
+MOV x, R1

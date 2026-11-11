@@ -5,7 +5,7 @@ int main()
 {
     int n,i;
     char tac[20][20];
-    char operator, arg1, arg2, result;
+    char operator='=', arg1, arg2='_', result;
 
     FILE *output=fopen("machinecode.txt","w");
 
@@ -18,6 +18,7 @@ int main()
         scanf("%s", tac[i]);
     }
 
+    printf("operator\targ1\targ2\tresult\n");
     for(i=0;i<n;i++)
     {
         result=tac[i][0];
@@ -40,6 +41,8 @@ int main()
                 fprintf(output, "DIV R%d, %c\n", i, arg2);
         }
         fprintf(output, "MOV %c, R%d\n", result, i);
+
+        printf("%c\t\t%c\t%c\t%c\n", operator, arg1, arg2, result);
     }
     fclose(output);
 }
