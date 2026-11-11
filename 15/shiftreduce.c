@@ -68,7 +68,7 @@ int main()
         {
             int stacklength=strlen(stack);
             stack[stacklength]=input[i];
-            stack[inputlength+1]='\0';
+            stack[stacklength+1]='\0';
 
             input[i]=' ';
             i++;
